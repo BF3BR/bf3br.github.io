@@ -5,298 +5,360 @@ excerpt: "The first post on our devblog: Circle of death, Dropship, Ping system 
 image: "/assets/posts/the-battle-royale-mod/thumb.jpg"
 ---
 
-{% Section title: "Brief history" author: "KVN" %}
-    <p>
-        Hello there!
-    </p>
-    <p>
-        Welcome to our first Devblog! Today I want to talk about the history of our mod, the features we implemented in the last two months, and the things we need to finish until the release.
-    </p>
-    <p>
-        The project's development started around mid January 2021, I created a group chat with Breaknix, Bree_Arnold, Janssent and Kiwidog. Kiwi and Breaknix had already made proof of concepts 
-        for a BR mod and I suggested that we should actually finish one. I started working on the match and round logic, Breaknix added 
-        his Circle of death code and a bunch of logic of timing, Bree started working on adding the Co-op man down state and other <a target="_blank" rel="noopener" href="https://docs.veniceunleashed.net/vext/guides/data/#partitions">EBX</a> 
-        trickery, Janssent started working on the loot pickup + generalizing our code so we can use more than one map later on, and we used some of <a target="_blank" rel="noopener" href="https://github.com/kiwidoggie/VEXT-BR">Kiwi's original BR mod</a> as a base.
-    </p>
-    <p>
-        Later on FoolHen and Keku645 joined as well to help our project. FoolHen also works on <a target="_blank" rel="noopener" href="https://bf3reality.com/">Bf3: Reality Mod</a> which is a much older and larger project so he help us out a bunch of times. Keku is 
-        currently working on the custom map which he will talk about in details down bellow.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title=""
-        href={% asset_path 00.jpg %}
-    >
-        <img src={% asset_path 00.jpg %} alt="" />
-    </a>
-{% endSection %}
-
-{% Section title: "Circle of death" author: "Breaknix" %}
-    <p>
-        Writing the code for the circle of death was pretty much the first thing I tried to do when I got my hands into VU modding tools. 
-        Having a BR in BF3 was a dream since I first played PUBG, so naturally, I wanted to give it a try. The circle 
-        behaves the same way you would expect from a BR game. Why change something that works? 
-        It's funny though that even some of these seemingly easy tasks can contain some pretty 
-        enjoyable challenges. Here are two interesting reads that helped me while solving some of those issues, 
-        <a target="_blank" rel="noopener" href="https://meyavuz.wordpress.com/2018/11/15/generate-uniform-random-points-within-a-circle/">Generate uniform random points within a circle</a> and 
-        <a target="_blank" rel="noopener" href="https://observablehq.com/@scarysize/finding-random-points-in-a-polygon">Finding Random Points in a Polygon</a>.
-    </p>
-    <p>
-        We still have a problem though which is how to display the circle while in-game. The current solution is to 
-        use the <code>DebugRenderer</code> which creates a similar effect to PUBG's blue wall. The catch is that when drawing using 
-        <code>DebugRenderer</code> you pretty much draw on top of everything, there's no depth to the point which can become a big annoyance. 
-        We still try to figure out how to overcome this or modify it in a way that will work as expected.
-    </p>
-    <div class="media-grid">
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Brief history
+        </h2>
+        <div class="author">by KVN</div>
+    </div>
+    <div class="post-section-content">
+        <p>
+            Hello there!
+        </p>
+        <p>
+            Welcome to our first Devblog! Today I want to talk about the history of our mod, the features we implemented in the last two months, and the things we need to finish until the release.
+        </p>
+        <p>
+            The project's development started around mid January 2021, I created a group chat with Breaknix, Bree_Arnold, Janssent and Kiwidog. Kiwi and Breaknix had already made proof of concepts 
+            for a BR mod and I suggested that we should actually finish one. I started working on the match and round logic, Breaknix added 
+            his Circle of death code and a bunch of logic of timing, Bree started working on adding the Co-op man down state and other <a target="_blank" rel="noopener" href="https://docs.veniceunleashed.net/vext/guides/data/#partitions">EBX</a> 
+            trickery, Janssent started working on the loot pickup + generalizing our code so we can use more than one map later on, and we used some of <a target="_blank" rel="noopener" href="https://github.com/kiwidoggie/VEXT-BR">Kiwi's original BR mod</a> as a base.
+        </p>
+        <p>
+            Later on FoolHen and Keku645 joined as well to help our project. FoolHen also works on <a target="_blank" rel="noopener" href="https://bf3reality.com/">Bf3: Reality Mod</a> which is a much older and larger project so he help us out a bunch of times. Keku is 
+            currently working on the custom map which he will talk about in details down bellow.
+        </p>
         <a 
             class="media-wrapper glightbox" 
             data-type="image"
-            data-title="The current wall"
-            href={% asset_path 09.jpg %}
+            data-title=""
+            href={% asset_path 00.jpg %}
         >
-            <img src={% asset_path 09.jpg %} alt="The current wall" />
-        </a>
-        <a 
-            class="media-wrapper glightbox" 
-            data-type="image"
-            data-title="W.I.P. Out of circle visual effect"
-            href={% asset_path 10.jpg %}
-        >
-            <img src={% asset_path 10.jpg %} alt="W.I.P. Out of circle visual effect" />
+            <img src={% asset_path 00.jpg %} alt="" />
         </a>
     </div>
-    <p>
-        The latest addition to the "circle of death" is the fire effects which they randomly spawn as the circle moves. I think that they look pretty cool 
-        (you can get an idea from the screenshot below). We are also experimenting with adding additional effects such as smoke or smaller 
-        fire trails around the circle.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title="Fire effects outside of the circle"
-        href={% asset_path 01.jpg %}
-    >
-        <img src={% asset_path 01.jpg %} alt="Fire effects outside of the circle" />
-    </a>
-{% endSection %}
+</div>
 
-{% Section title: "Dropship" author: "KVN & FlashHit" %}
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="video"
-        href={% asset_path dropship.mp4 %}
-    >
-        <video 
-            src={% asset_path dropship.mp4 %}
-            muted="true" 
-            autoplay="true" 
-            loop="true">
-        </video>
-    </a>
-    <p>
-        FlashHit made a prototype version of the Dropship in the first weeks when we started developing the mod.
-    </p>
-    <p>
-        Right now we can set Point A and Point B and the time it takes to travel the distance between these two points. Also, we created a custom camera so players can look around before they jump out.
-    </p>
-    <p>
-        We use the same Dropship function to create airdrops as well.
-    </p>
-{% endSection %}
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Circle of death
+        </h2>
+        <div class="author">by Breaknix</div>
+    </div>
+    <div class="post-section-content">
+        <p>
+            Writing the code for the circle of death was pretty much the first thing I tried to do when I got my hands into VU modding tools. 
+            Having a BR in BF3 was a dream since I first played PUBG, so naturally, I wanted to give it a try. The circle 
+            behaves the same way you would expect from a BR game. Why change something that works? 
+            It's funny though that even some of these seemingly easy tasks can contain some pretty 
+            enjoyable challenges. Here are two interesting reads that helped me while solving some of those issues, 
+            <a target="_blank" rel="noopener" href="https://meyavuz.wordpress.com/2018/11/15/generate-uniform-random-points-within-a-circle/">Generate uniform random points within a circle</a> and 
+            <a target="_blank" rel="noopener" href="https://observablehq.com/@scarysize/finding-random-points-in-a-polygon">Finding Random Points in a Polygon</a>.
+        </p>
+        <p>
+            We still have a problem though which is how to display the circle while in-game. The current solution is to 
+            use the <code>DebugRenderer</code> which creates a similar effect to PUBG's blue wall. The catch is that when drawing using 
+            <code>DebugRenderer</code> you pretty much draw on top of everything, there's no depth to the point which can become a big annoyance. 
+            We still try to figure out how to overcome this or modify it in a way that will work as expected.
+        </p>
+        <div class="media-grid">
+            <a 
+                class="media-wrapper glightbox" 
+                data-type="image"
+                data-title="The current wall"
+                href={% asset_path 09.jpg %}
+            >
+                <img src={% asset_path 09.jpg %} alt="The current wall" />
+            </a>
+            <a 
+                class="media-wrapper glightbox" 
+                data-type="image"
+                data-title="W.I.P. Out of circle visual effect"
+                href={% asset_path 10.jpg %}
+            >
+                <img src={% asset_path 10.jpg %} alt="W.I.P. Out of circle visual effect" />
+            </a>
+        </div>
+        <p>
+            The latest addition to the "circle of death" is the fire effects which they randomly spawn as the circle moves. I think that they look pretty cool 
+            (you can get an idea from the screenshot below). We are also experimenting with adding additional effects such as smoke or smaller 
+            fire trails around the circle.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="Fire effects outside of the circle"
+            href={% asset_path 01.jpg %}
+        >
+            <img src={% asset_path 01.jpg %} alt="Fire effects outside of the circle" />
+        </a>
+    </div>
+</div>
 
-{% Section title: "Custom map - Kiasar Extended" author: "Keku645" %}
-    <p>
-        This level purpose is to expand the already great map <a target="_blank" rel="noopener" href="https://battlefield.fandom.com/wiki/Kiasar_Railroad">Kiasar Railroad</a> but giving it a new twist, we're doing it 
-        under the premise to be playable as a Battle Royale map.
-    </p>
-    <p>
-        To build this map I had to use the <a target="_blank" rel="noopener" href="https://github.com/BF3RM/MapEditor/">MapEditor</a> mod, at the time of making this level,
-        the tool was still on development so I couldn't use many stuff which a normal engine would offer me like terrain
-        editor, ability to place sounds and FX natively (actually done with EffectBlueprint and EffectManager), scalable
-        assets keeping it's collision and many more stuff.
-    </p>
-    <p align="center">
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Dropship
+        </h2>
+        <div class="author">by KVN & FlashHit</div>
+    </div>
+    <div class="post-section-content">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="video"
+            href={% asset_path dropship.mp4 %}
+        >
+            <video 
+                src={% asset_path dropship.mp4 %}
+                muted="true" 
+                autoplay="true" 
+                loop="true">
+            </video>
+        </a>
+        <p>
+            FlashHit made a prototype version of the Dropship in the first weeks when we started developing the mod.
+        </p>
+        <p>
+            Right now we can set Point A and Point B and the time it takes to travel the distance between these two points. Also, we created a custom camera so players can look around before they jump out.
+        </p>
+        <p>
+            We use the same Dropship function to create airdrops as well.
+        </p>
+    </div>
+</div>
+
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Custom map - Kiasar Extended
+        </h2>
+        <div class="author">by Keku645</div>
+    </div>
+    <div class="post-section-content">
+        <p>
+            This level purpose is to expand the already great map <a target="_blank" rel="noopener" href="https://battlefield.fandom.com/wiki/Kiasar_Railroad">Kiasar Railroad</a> but giving it a new twist, we're doing it 
+            under the premise to be playable as a Battle Royale map.
+        </p>
+        <p>
+            To build this map I had to use the <a target="_blank" rel="noopener" href="https://github.com/BF3RM/MapEditor/">MapEditor</a> mod, at the time of making this level,
+            the tool was still on development so I couldn't use many stuff which a normal engine would offer me like terrain
+            editor, ability to place sounds and FX natively (actually done with EffectBlueprint and EffectManager), scalable
+            assets keeping it's collision and many more stuff.
+        </p>
+        <p align="center">
+            <br/>
+            <a class="button" href="{% post_url 2021-06-27-the-making-of-kiasar-extended %}">
+                Read more about Kiasar Extended
+            </a>
+            <br/><br/>
+        </p>
+    </div>
+</div>
+
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Ping system
+        </h2>
+        <div class="author">by Kiwidog</div>
+    </div>
+    <div class="post-section-content">
+        <p>
+            One thing that annoys myself and many other Battlefield veterans is the 2D spotting ability that has plagued (or blessed, depending on how you feel about it) the series for more years than not. To me it feels cheap and cheesy. I decided to implement something that could be deployed quite easily per squad that would allow a player to “ping” or “spot” a point in 3d space that would be updated for all squadmates. Shamelessly stolen from games like Rainbow 6: Siege, Counter-Strike: Global Offensive, Apex, etc the list goes on. This simple change changes the “dorito” that follows a player (and in Battlefield 3, through smoke) to the “last seen” location.
+        </p>
+        <p>
+            First I pulled a previous experiment that I had created for testing out artillery in VU. This included automatic raycasting, registering clicks, timeout/cooldown for use, and transferring this information back to the server to be replicated to all squad mates. A video of this is provided below.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="video"
+            href={% asset_path arty.mp4 %}
+        >
+            <video 
+                src={% asset_path arty.mp4 %}
+                muted="true" 
+                autoplay="true" 
+                loop="true">
+            </video>
+        </a>
+        <p>
+            Once all of this functionality was pulled out, it was tested in a standalone mod that served to be the base for various features I have been working on for BR. It was a bit laggy and needed some tweaks, but the firsts tests were successful.
+        </p>
+        <p>
+            Here is a closeup of the pings.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            href={% asset_path 03.jpg %}
+        >
+            <img src={% asset_path 03.jpg %} alt="Blueprint" />
+        </a>
+        <p>
+            Later on down the line KVN had added the 2D location to the minimap and Breaknix to the compass!
+        </p>
+        <p>
+            At this current time there are some rough edges and final UI changes that will be happening but it is mostly functional and ready for playtests.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="video"
+            href={% asset_path compass.mp4 %}
+        >
+            <video 
+                src={% asset_path compass.mp4 %}
+                muted="true" 
+                autoplay="true" 
+                loop="true">
+            </video>
+        </a>
+    </div>
+</div>
+
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Loot system
+        </h2>
+        <div class="author">by Janssent</div>
+    </div>
+    <div class="post-section-content">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="video"
+            href={% asset_path pickup.mp4 %}
+        >
+            <video 
+                src={% asset_path pickup.mp4 %}
+                muted="true" 
+                autoplay="true" 
+                loop="true">
+            </video>
+        </a>
+        <p>
+            For the initial implementation of weapon pickups we decided to take inspiration from the logic blueprints of the vanilla <a href="https://battlefield.fandom.com/wiki/Scavenger" rel="noopener" target="_blank">Scavenger</a> mode pickups. They were a very helpful example for us since you need to get a lot of blueprint and entity properties right in order to successfully create the weapon pickup entity.
+        </p>
+        <p>
+            Once the vanilla blueprint was working, we could start modifying it to make it fit the BR mode.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            href={% asset_path 04.jpg %}
+        >
+            <img src={% asset_path 04.jpg %} alt="Blueprint" />
+        </a>
+        <p>
+            Trying to create custom Frostbite blueprints (containing connection logic, similar to Unreal blueprints) from scratch can be frustrating. Just getting a single, seemingly unrelated, flag wrong can result in the game crashing or entity creation failing. 
+        </p>
+        <p>
+            Recreating vanilla blueprints in VEXT is an easy way to get actual results in-game. After that you can start adding or removing entities, changing properties and adding connection logic to end up with a custom blueprint.
+        </p>
         <br/>
-        <a class="button" href="{% post_url 2021-06-27-the-making-of-kiasar-extended %}">
-            Read more about Kiasar Extended
-        </a>
-        <br/><br/>
-    </p>
-{% endSection %}
+        <p>
+            In the meantime we started implementing the new system for the loot pickups. Here is a little sneak peek:
+        </p>
+        <div class="media-grid">
+            <a 
+                class="media-wrapper glightbox" 
+                data-type="image"
+                data-title="Inventory - W.I.P."
+                href={% asset_path 12.jpg %}
+            >
+                <img src={% asset_path 12.jpg %} alt="Inventory - W.I.P." />
+            </a>
+            <a 
+                class="media-wrapper glightbox" 
+                data-type="image"
+                data-title="New loot system - W.I.P."
+                href={% asset_path 11.jpg %}
+            >
+                <img src={% asset_path 11.jpg %} alt="New loot system - W.I.P." />
+            </a>
+        </div>
+    </div>
+</div>
 
-{% Section title: "Ping system" author: "Kiwidog" %}
-    <p>
-        One thing that annoys myself and many other Battlefield veterans is the 2D spotting ability that has plagued (or blessed, depending on how you feel about it) the series for more years than not. To me it feels cheap and cheesy. I decided to implement something that could be deployed quite easily per squad that would allow a player to “ping” or “spot” a point in 3d space that would be updated for all squadmates. Shamelessly stolen from games like Rainbow 6: Siege, Counter-Strike: Global Offensive, Apex, etc the list goes on. This simple change changes the “dorito” that follows a player (and in Battlefield 3, through smoke) to the “last seen” location.
-    </p>
-    <p>
-        First I pulled a previous experiment that I had created for testing out artillery in VU. This included automatic raycasting, registering clicks, timeout/cooldown for use, and transferring this information back to the server to be replicated to all squad mates. A video of this is provided below.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="video"
-        href={% asset_path arty.mp4 %}
-    >
-        <video 
-            src={% asset_path arty.mp4 %}
-            muted="true" 
-            autoplay="true" 
-            loop="true">
-        </video>
-    </a>
-    <p>
-        Once all of this functionality was pulled out, it was tested in a standalone mod that served to be the base for various features I have been working on for BR. It was a bit laggy and needed some tweaks, but the firsts tests were successful.
-    </p>
-    <p>
-        Here is a closeup of the pings.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        href={% asset_path 03.jpg %}
-    >
-        <img src={% asset_path 03.jpg %} alt="Blueprint" />
-    </a>
-    <p>
-        Later on down the line KVN had added the 2D location to the minimap and Breaknix to the compass!
-    </p>
-    <p>
-        At this current time there are some rough edges and final UI changes that will be happening but it is mostly functional and ready for playtests.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="video"
-        href={% asset_path compass.mp4 %}
-    >
-        <video 
-            src={% asset_path compass.mp4 %}
-            muted="true" 
-            autoplay="true" 
-            loop="true">
-        </video>
-    </a>
-{% endSection %}
-
-
-{% Section title: "Loot system" author: "Janssent" %}
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="video"
-        href={% asset_path pickup.mp4 %}
-    >
-        <video 
-            src={% asset_path pickup.mp4 %}
-            muted="true" 
-            autoplay="true" 
-            loop="true">
-        </video>
-    </a>
-    <p>
-        For the initial implementation of weapon pickups we decided to take inspiration from the logic blueprints of the vanilla <a href="https://battlefield.fandom.com/wiki/Scavenger" rel="noopener" target="_blank">Scavenger</a> mode pickups. They were a very helpful example for us since you need to get a lot of blueprint and entity properties right in order to successfully create the weapon pickup entity.
-    </p>
-    <p>
-        Once the vanilla blueprint was working, we could start modifying it to make it fit the BR mode.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        href={% asset_path 04.jpg %}
-    >
-        <img src={% asset_path 04.jpg %} alt="Blueprint" />
-    </a>
-    <p>
-        Trying to create custom Frostbite blueprints (containing connection logic, similar to Unreal blueprints) from scratch can be frustrating. Just getting a single, seemingly unrelated, flag wrong can result in the game crashing or entity creation failing. 
-    </p>
-    <p>
-        Recreating vanilla blueprints in VEXT is an easy way to get actual results in-game. After that you can start adding or removing entities, changing properties and adding connection logic to end up with a custom blueprint.
-    </p>
-    <br/>
-    <p>
-        In the meantime we started implementing the new system for the loot pickups. Here is a little sneak peek:
-    </p>
-    <div class="media-grid">
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            UI overhaul
+        </h2>
+        <div class="author">by KVN</div>
+    </div>
+    <div class="post-section-content">
         <a 
             class="media-wrapper glightbox" 
             data-type="image"
-            data-title="Inventory - W.I.P."
-            href={% asset_path 12.jpg %}
+            data-title="In-game HUD"
+            href={% asset_path 05.jpg %}
         >
-            <img src={% asset_path 12.jpg %} alt="Inventory - W.I.P." />
+            <img src={% asset_path 05.jpg %} alt="In-game HUD" />
         </a>
+        <p>
+            Most of the UI is done or at least in a state where we only need minor adjustments. Because in Venice Unleashed you can't modify the original UI elements we had to recreate almost all of them. It's not 100% true, you can modify some elements but we couldn't for example modify the map the way we wanted.
+        </p>
         <a 
             class="media-wrapper glightbox" 
             data-type="image"
-            data-title="New loot system - W.I.P."
-            href={% asset_path 11.jpg %}
+            data-title="Map screen"
+            href={% asset_path 06.jpg %}
         >
-            <img src={% asset_path 11.jpg %} alt="New loot system - W.I.P." />
+            <img src={% asset_path 06.jpg %} alt="Map screen" />
+        </a>
+        <p>
+            For the custom map, I made a canvas-based solution first, which worked fine, but we had some performance issues with it. I replaced it with <a href="https://www.pixijs.com/">PixiJS</a> and also implemented <a href="https://react-redux.js.org/">React Redux</a> which made the whole UI much more performant.
+        </p>
+        <p>
+            This week we also implemented a custom ESC menu.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="ESC menu"
+            href={% asset_path 07.jpg %}
+        >
+            <img src={% asset_path 07.jpg %} alt="ESC menu" />
+        </a>
+        <p>
+            You probably already seen it in the <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=O1yw5zJxUKE">teaser trailer</a> but we have a custom showroom/deployment screen. You can choose the way you want to play: Solo, Join a random team or Join/Create your team. You can join your teammates by the randomly generated Code shown in the picture below. You can also choose your appearance here as well.
+        </p>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="Showroom / Deployment"
+            href={% asset_path 08.jpg %}
+        >
+            <img src={% asset_path 08.jpg %} alt="Showroom / Deployment" />
         </a>
     </div>
-{% endSection %}
+</div>
 
-{% Section title: "UI overhaul" author: "KVN" %}
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title="In-game HUD"
-        href={% asset_path 05.jpg %}
-    >
-        <img src={% asset_path 05.jpg %} alt="In-game HUD" />
-    </a>
-    <p>
-        Most of the UI is done or at least in a state where we only need minor adjustments. Because in Venice Unleashed you can't modify the original UI elements we had to recreate almost all of them. It's not 100% true, you can modify some elements but we couldn't for example modify the map the way we wanted.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title="Map screen"
-        href={% asset_path 06.jpg %}
-    >
-        <img src={% asset_path 06.jpg %} alt="Map screen" />
-    </a>
-    <p>
-        For the custom map, I made a canvas-based solution first, which worked fine, but we had some performance issues with it. I replaced it with <a href="https://www.pixijs.com/">PixiJS</a> and also implemented <a href="https://react-redux.js.org/">React Redux</a> which made the whole UI much more performant.
-    </p>
-    <p>
-        This week we also implemented a custom ESC menu.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title="ESC menu"
-        href={% asset_path 07.jpg %}
-    >
-        <img src={% asset_path 07.jpg %} alt="ESC menu" />
-    </a>
-    <p>
-        You probably already seen it in the <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=O1yw5zJxUKE">teaser trailer</a> but we have a custom showroom/deployment screen. You can choose the way you want to play: Solo, Join a random team or Join/Create your team. You can join your teammates by the randomly generated Code shown in the picture below. You can also choose your appearance here as well.
-    </p>
-    <a 
-        class="media-wrapper glightbox" 
-        data-type="image"
-        data-title="Showroom / Deployment"
-        href={% asset_path 08.jpg %}
-    >
-        <img src={% asset_path 08.jpg %} alt="Showroom / Deployment" />
-    </a>
-{% endSection %}
-
-
-{% Section title: "Summary" author: "KVN" %}
-    <p>
-        To summarize everything: we worked hard in the past two months, fixed annoying issues, added a bunch of must-have features and we are 
-        excited to show you more. Our progress slowed down a bit in the last 2 weeks (moving, family, school, work, etc.) but it 
-        is steady.
-    </p>
-    <p>
-        The most important feature we are working on right now is a proper inventory system for Bf3. When we are finished with that we could 
-        start the playtests with a small group of people first. We will talk about the new loot system and the 
-        playtests in our next dev blog hopefully.
-    </p>
-    <p>
-        If you want to stay up to date join our discord: <a target="_blank" rel="noopener" href="https://discord.gg/9nuXa4Sx5c">https://discord.gg/9nuXa4Sx5c</a>
-    </p>
-    <p>
-        See you soon! ✌💙
-    </p>
-{% endSection %}
+<div class="post-section">
+    <div class="post-section-title">
+        <h2>
+            Summary
+        </h2>
+        <div class="author">by KVN</div>
+    </div>
+    <div class="post-section-content">
+        <p>
+            To summarize everything: we worked hard in the past two months, fixed annoying issues, added a bunch of must-have features and we are 
+            excited to show you more. Our progress slowed down a bit in the last 2 weeks (moving, family, school, work, etc.) but it 
+            is steady.
+        </p>
+        <p>
+            The most important feature we are working on right now is a proper inventory system for Bf3. When we are finished with that we could 
+            start the playtests with a small group of people first. We will talk about the new loot system and the 
+            playtests in our next dev blog hopefully.
+        </p>
+        <p>
+            If you want to stay up to date join our discord: <a target="_blank" rel="noopener" href="https://discord.gg/9nuXa4Sx5c">https://discord.gg/9nuXa4Sx5c</a>
+        </p>
+        <p>
+            See you soon! ✌💙
+        </p>
+    </div>
+</div>
