@@ -1,0 +1,269 @@
+---
+layout: post
+title: "The making of Kiasar Extended"
+excerpt: "A custom map created for the Battle Royale mod."
+image: "/assets/posts/the-making-of-kiasar-extended/thumb.jpg"
+author: "Keku645"
+---
+
+{% Section title: "Development of Kiasar Extended" %}
+    <p>
+        This level purpose is to expand the already great map <a target="_blank" rel="noopener" href="https://battlefield.fandom.com/wiki/Kiasar_Railroad">Kiasar Railroad</a> but giving it a new twist, we're doing it 
+        under the premise to be playable as a Battle Royale map.
+    </p>
+    <p>
+        To build this map I had to use the <a target="_blank" rel="noopener" href="https://github.com/BF3RM/MapEditor/">MapEditor</a> mod, at the time of making this level,
+        the tool was still on development so I couldnt use many stuff which a normal engine would offer me like terrain
+        editor, ability to place sounds and FX natively (actually done with EffectBlueprint and EffectManager), scalable
+        assets keeping it's collision and many more stuff.
+    </p>
+{% endSection %}
+
+{% Section title: "Designing the map" %}
+    <p>
+        In the DLC End Game, map's max size before falling to the void are 6x6km2, what players would play in this
+        version would be around 2,5x2,5km2.
+    </p>
+    <p>
+        Vanilla offers 0,6x,6km2 map's size, I had to think really well each zone's purpose and distances so players
+        wouldn't get bored of traveling such big distances.
+    </p>
+    <p>
+        The first step was to take a look what the terrain was already offering, I saw a lot of interesting areas that could
+        lead into good fights once the level would be finished so after that I started to think about the map's layout.
+    </p>
+    <p>
+        Players can actually go further beyond the "virtual" out of bounds, but circle will catch them before they reach
+        that point.
+    </p>
+    <p>
+        The final circle will always close outside the ocean, so don't mind trying to explore all the areas you can before it
+        closes.
+    </p>
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="Original Out of Bounds area from Vanilla map in red as comparison."
+        href={% asset_path 01.jpg %}
+    >
+        <img src={% asset_path 01.jpg %} alt="Original Out of Bounds area from Vanilla map in red as comparison." />
+        <div class="info">Original Out of Bounds area from Vanilla map in red as comparison.</div>
+    </a>
+{% endSection %}
+
+{% Section title: "Lookout" %}
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="New zone: Lookout"
+        href={% asset_path 02.jpg %}
+    >
+        <img src={% asset_path 02.jpg %} alt="New zone: Lookout" />
+    </a>
+    <p>
+        Lookout is the constructed highest point in the map, from here you can actually see the whole map and its
+        surroundings.
+    </p>
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="New zone: Lookout"
+        href={% asset_path 03.jpg %}
+    >
+        <img src={% asset_path 03.jpg %} alt="New zone: Lookout" />
+    </a>
+{% endSection %}
+
+{% Section title: "Ghost Town" %}
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="New zone: Ghost Town"
+        href={% asset_path 04.jpg %}
+    >
+        <img src={% asset_path 04.jpg %} alt="New zone: Ghost Town" />
+    </a>
+    <p>
+        The village has been habited in the past, now it is a ghost town due the lack of resources, expect to find plenty of
+        loot here.
+    </p>
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="New zone: Ghost Town"
+        href={% asset_path 05.jpg %}
+    >
+        <img src={% asset_path 05.jpg %} alt="New zone: Ghost Town" />
+    </a>
+{% endSection %}
+
+{% Section title: "Harbour" %}
+    <p>
+        Harbour is the naval military point of Kiasar, you might expect to find a merchant in a future update here.
+    </p>
+    <div class="media-grid">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Harbour"
+            href={% asset_path 06.jpg %}
+        >
+            <img src={% asset_path 06.jpg %} alt="New zone: Harbour" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Harbour"
+            href={% asset_path 07.jpg %}
+        >
+            <img src={% asset_path 07.jpg %} alt="New zone: Harbour" />
+        </a>
+    </div>
+{% endSection %}
+
+{% Section title: "Vehicle Graveyard" %}
+    <a 
+        class="media-wrapper glightbox" 
+        data-type="image"
+        data-title="New zone: Vehicle Graveyard"
+        href={% asset_path 08.jpg %}
+    >
+        <img src={% asset_path 08.jpg %} alt="New zone: Vehicle Graveyard" />
+    </a>
+    <p>
+        Years ago this was a concurred vehicle graveyard, as years pased and the resources decreased, it ended being
+        abandoned aswell.
+    </p>
+    <div class="media-grid">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Vehicle Graveyard"
+            href={% asset_path 09.jpg %}
+        >
+            <img src={% asset_path 09.jpg %} alt="New zone: Vehicle Graveyard" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Vehicle Graveyard"
+            href={% asset_path 16.jpg %}
+        >
+            <img src={% asset_path 16.jpg %} alt="New zone: Vehicle Graveyard" />
+        </a>
+    </div>
+{% endSection %}
+
+{% Section title: "Timber Mill Area" %}
+    <p>
+        In this area is where most of the timber is stored, timber piles, pallets and even containers with more inside.
+        This area is still work in progress.
+    </p>
+    <div class="media-grid">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Timber Mill Area"
+            href={% asset_path 10.jpg %}
+        >
+            <img src={% asset_path 10.jpg %} alt="New zone: Timber Mill Area" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone: Timber Mill Area"
+            href={% asset_path 11.jpg %}
+        >
+            <img src={% asset_path 11.jpg %} alt="New zone: Timber Mill Area" />
+        </a>
+    </div>
+{% endSection %}
+
+{% Section title: "Other areas" %}
+    <p>
+        You might want to explore the whole map instead of focusing your efforts on the main zones, you might end
+        finding interesting things you didn't expect.
+    </p>
+    <div class="media-grid">
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 12.jpg %}
+        >
+            <img src={% asset_path 12.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 13.jpg %}
+        >
+            <img src={% asset_path 13.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 14.jpg %}
+        >
+            <img src={% asset_path 14.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 15.jpg %}
+        >
+            <img src={% asset_path 15.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 17.jpg %}
+        >
+            <img src={% asset_path 17.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 18.jpg %}
+        >
+            <img src={% asset_path 18.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 19.jpg %}
+        >
+            <img src={% asset_path 19.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 20.jpg %}
+        >
+            <img src={% asset_path 20.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 21.jpg %}
+        >
+            <img src={% asset_path 21.jpg %} alt="New zone" />
+        </a>
+        <a 
+            class="media-wrapper glightbox" 
+            data-type="image"
+            data-title="New zone"
+            href={% asset_path 22.jpg %}
+        >
+            <img src={% asset_path 22.jpg %} alt="New zone" />
+        </a>
+    </div>
+{% endSection %}
